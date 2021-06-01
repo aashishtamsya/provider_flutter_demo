@@ -1,7 +1,6 @@
-import 'package:flutter/widgets.dart';
-import 'package:provider_demo/app.dart';
-import 'package:provider_demo/home.dart';
 import 'dart:ui';
+import 'package:flutter/widgets.dart';
+import 'package:provider_demo/app/app.dart';
 
 void main() {
   runApp(MyApp());

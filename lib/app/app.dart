@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider_demo/home.dart';
+import 'package:provider/provider.dart';
+import 'package:provider_demo/src/home.dart';
+import 'package:provider_demo/src/timer_info.dart';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -19,7 +21,10 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: ChangeNotifierProvider(
+        create: (BuildContext context) => TimerInfo(),
+        child: HomePage(),
+      ),
     );
   }
 }

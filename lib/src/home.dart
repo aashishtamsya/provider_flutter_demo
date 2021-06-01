@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:provider_demo/src/timer_info.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -8,14 +10,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int initialValue = 60;
-
   @override
   void initState() {
     Timer.periodic(Duration(seconds: 1), (t) {
-      setState(() {
-        initialValue--;
-      });
+      var timerInfo = Provider.of<TimerInfo>(context, listen: false);
+      timerInfo.updateRemainingTime();
     });
     super.initState();
   }
@@ -25,9 +24,13 @@ class _HomePageState extends State<HomePage> {
     print("==== build from scratch =====");
     return Scaffold(
       body: Center(
-        child: Text(
-          initialValue.toString(),
-          style: TextStyle(fontSize: 36),
+        child: Consumer<TimerInfo>(
+          builder: (context, data, child) {
+            return Text(
+              data.getRemainingTime().toString(),
+              style: TextStyle(fontSize: 36),
+            );
+          },
         ),
       ),
     );
